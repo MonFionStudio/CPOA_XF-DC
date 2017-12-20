@@ -20,8 +20,21 @@ public class Project {
 		return this.tasks;
 	}
 	
+	public Task getTask(long pfId) {
+		for (Task teuch : this.tasks) {
+			if(teuch.getId() == pfId) {
+				return teuch;
+			}
+		}
+		return null;
+	}
+	
 	public void setTask(Task pfTask) {
 		this.tasks.add(pfTask);
+	}
+	
+	public void rmTask(Task pfTask) {
+		this.tasks.remove(pfTask);
 	}
 
 }
