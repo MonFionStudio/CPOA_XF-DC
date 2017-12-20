@@ -1,12 +1,11 @@
 package Model;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class Project {
-	private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
+	private final List<Task> tasks = new ArrayList<Task>();
 	private final String nom;
 	
 	public Project(String pfNom) {
@@ -17,8 +16,12 @@ public class Project {
 		return this.nom;
 	}
 	
-	public Task getTask(long pfId) {
-		return null;
+	public List<Task> getTasks() {
+		return this.tasks;
+	}
+	
+	public void setTask(Task pfTask) {
+		this.tasks.add(pfTask);
 	}
 
 }
