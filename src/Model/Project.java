@@ -33,8 +33,16 @@ public class Project {
 		this.tasks.add(pfTask);
 	}
 	
-	public void rmTask(Task pfTask) {
-		this.tasks.remove(pfTask);
+	public void rmTask(long pfId) {
+		for (Task teuch : this.tasks) {
+			if(teuch.getId() == pfId) {
+				this.tasks.remove(teuch);
+			}
+		}
+	}
+	
+	public int size() {
+		return this.tasks.size();
 	}
 
 }
