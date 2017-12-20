@@ -29,7 +29,7 @@ public class Project {
 		return null;
 	}
 	
-	public void setTask(Task pfTask) {
+	public void addTask(Task pfTask) {
 		this.tasks.add(pfTask);
 	}
 	
