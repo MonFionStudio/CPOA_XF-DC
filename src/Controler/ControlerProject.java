@@ -23,7 +23,15 @@ public class ControlerProject extends Controler {
 		return msg;
 	}
 	
-	
+	public String viewTasksDeadLine(Date pfDeadLine) {
+		String msg = "";
+		for (Task teuch : this.getTasks()) {
+			if(teuch.getDeadLine().equals(pfDeadLine)) {
+				msg += this.project.getNom() + "\n" + teuch.toString() + "\n";
+			}
+		}
+		return msg;
+	}
 	
 	/*
 	 * Override methodes classe

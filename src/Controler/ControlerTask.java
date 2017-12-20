@@ -18,8 +18,6 @@ public class ControlerTask extends Controler {
 		return false;
 	}
 	
-	
-	
 	/*
 	 * Override methodes classe
 	 */
