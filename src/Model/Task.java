@@ -38,4 +38,8 @@ public final class Task {
     public void setDeadLine(Date pfDeadline) {
     	this.deadline = pfDeadline;
     }
+    
+    public String toString() {
+    	return this.getId() + " : " + this.getDescription() + " " + (this.isDone() ? 'x' : ' ') + " " + this.getDeadLine().toString();
+    }
 }

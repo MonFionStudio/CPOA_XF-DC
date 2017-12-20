@@ -44,5 +44,13 @@ public class Project {
 	public int size() {
 		return this.tasks.size();
 	}
+	
+	public String toString() {
+		String msg = this.getNom() + "\n";
+		for (Task teuch : this.tasks) {
+			msg += "       " + teuch.toString() + "\n";
+		}
+		return msg;
+	}
 
 }
