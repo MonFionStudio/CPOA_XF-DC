@@ -16,7 +16,7 @@ import Model.Task;
 public final class TaskOtron3000 implements Runnable {
     private static final String QUIT = "quit";
 
-    private Routeur routeur = new Routeur();
+    private Routeur routeur = new Routeur(this);
     private final BufferedReader in;
     private final PrintWriter out;
 
@@ -121,4 +121,9 @@ public final class TaskOtron3000 implements Runnable {
     private long nextId() {
         return ++lastId;
     }
+
+	public void refresh(String msg) {
+		out.print(msg);
+        out.flush();
+	}
 }
