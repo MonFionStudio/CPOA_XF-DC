@@ -93,7 +93,7 @@ public class Routeur {
 			}
 			break;
 		case "help":
-			view.help();
+			notifyView(help());
 			break;
 		case "today":
 			for (ControlerProject p : lProject) {
@@ -106,25 +106,26 @@ public class Routeur {
 			}
 			break;
 		default:
-			view.error(command);
+			notifyView(error(commandLine));
 			break;
 		}
 	}
 	
-	public void help() {
+	public String help() {
 		String msg = "";
         msg += "Commands:\n";
         msg += "  show\n";
-        msg += "  add project <project name>");
-        out.println("  add task <project name> <task description>");
-        out.println("  check <task ID>");
-        out.println("  uncheck <task ID>");
-        out.println();
+        msg += "  add project <project name>\n";
+        msg += "  add task <project name> <task description>\n";
+        msg += "  check <task ID>\n";
+        msg += "  uncheck <task ID>";
+        return msg;
     }
 
-    public void error(String command) {
-        out.printf("I don't know what the command \"%s\" is.", command);
-        out.println();
+    public String error(String command) {
+    	String msg = "";
+    	msg += "I don't know what the command " + command + " is.";
+    	return msg;
     }
 	
 	private void notifyView(String msg) {
