@@ -25,12 +25,12 @@ public class Routeur {
 		case "show":
 			String msg = "";
 			for (Project p : this.lProject) {
-				msg += p.getNom();
+				msg += "Project " + p.getNom() + " :\n";
 				for (Task task : p.getTasks()) {
 					if(task.isDone())
-						msg += "    [x] " + task.getId() + ": " + task.getDescription() + "\n";
+						msg += "    [x] " + task + "\n";
 					else
-						msg += "    [ ] " + task.getId() + ": " + task.getDescription() + "\n";
+						msg += "    [ ] " + task + "\n";
 				}
 				view.refresh(msg);
 			}
@@ -47,8 +47,8 @@ public class Routeur {
 					try {
 						for (Project p : this.lProject) {
 							if(p.getNom().equals(commandRest[2])) {
-								String[] date = commandRest[4].split("-");
-								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[3]), Integer.parseInt(date[2]), Integer.parseInt(date[1]))));
+								String[] date = commandRest[4].split("/");
+								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]))));
 								lastID++;
 							}
 						}

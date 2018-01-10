@@ -40,6 +40,6 @@ public final class Task {
     }
     
     public String toString() {
-    	return this.getId() + " : " + this.getDescription() + " " + (this.isDone() ? 'x' : ' ') + " " + this.getDeadLine().toString();
+    	return this.getId() + " : " + this.getDescription() + " " + this.getDeadLine().toString();
     }
 }
