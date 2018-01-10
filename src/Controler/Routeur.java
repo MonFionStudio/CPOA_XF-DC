@@ -99,6 +99,11 @@ public class Routeur {
 				notifyView(p.viewTodayDeadLine());
 			}
 			break;
+		case "byday":
+			for (ControlerProject p : lProject) {
+				notifyView(p.viewTasksDeadLine(new Date()));
+			}
+			break;
 		default:
 			view.error(command);
 			break;
