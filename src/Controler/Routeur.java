@@ -48,7 +48,7 @@ public class Routeur {
 						for (Project p : this.lProject) {
 							if(p.getNom().equals(commandRest[2])) {
 								String[] date = commandRest[4].split("/");
-								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]))));
+								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0]))));
 								lastID++;
 							}
 						}

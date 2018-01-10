@@ -40,6 +40,6 @@ public final class Task {
     }
     
     public String toString() {
-    	return this.getId() + " : " + this.getDescription() + " " + this.getDeadLine().toString();
+    	return this.getId() + " : " + this.getDescription() + " " + this.getDeadLine().getDate() + "/" + (this.getDeadLine().getMonth()+1) + "/" + this.getDeadLine().getYear();
     }
 }
