@@ -20,7 +20,6 @@ public class Routeur {
 	public void execute(String commandLine) {
 		String[] commandRest = commandLine.split(" ");
 		String command = commandRest[0];
-		System.out.println("banane");
 		switch (command) {
 		case "show":
 			String msg = "";
