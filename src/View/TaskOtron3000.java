@@ -42,22 +42,7 @@ public final class TaskOtron3000 implements Runnable {
         }
     }
 
-    public void help() {
-        out.println("Commands:");
-        out.println("  show");
-        out.println("  add project <project name>");
-        out.println("  add task <project name> <task description>");
-        out.println("  check <task ID>");
-        out.println("  uncheck <task ID>");
-        out.println();
-    }
-
-    public void error(String command) {
-        out.printf("I don't know what the command \"%s\" is.", command);
-        out.println();
-    }
-
-	public void refresh(String msg) {
+	public void actualiser(String msg) {
 		out.print(msg + "\n");
         out.flush();
 	}

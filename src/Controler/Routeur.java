@@ -32,7 +32,7 @@ public class Routeur {
 					else
 						msg += "    [ ] " + task + "\n";
 				}
-				view.refresh(msg);
+				notifyView(msg);
 			}
 			break;
 		case "add":
@@ -41,7 +41,7 @@ public class Routeur {
 					try {
 						lProject.add(new Project(commandRest[2]));
 					}catch (Exception e) {
-						view.refresh("add <project> <Project Name>");
+						notifyView("add <project> <Project Name>");
 					}
 				} else if (commandRest[1].equals("task")) {
 					try {
@@ -53,11 +53,11 @@ public class Routeur {
 							}
 						}
 					} catch (Exception e) {
-						view.refresh("add <task> <Project Name> <Task Description> <dd/mm/YYYY>");
+						notifyView("add <task> <Project Name> <Task Description> <dd/mm/YYYY>");
 					}
 				}
 			} catch (Exception e) {
-				view.refresh("add <project|task> <Project Name> <Task Description>");
+				notifyView("add <project|task> <Project Name> <Task Description>");
 			}
 			break;
 		case "check":
@@ -71,9 +71,9 @@ public class Routeur {
 					}
 				}
 				if(!bonc)
-					view.refresh("Erreur la tache est inexistante !");
+					notifyView("Erreur la tache est inexistante !");
 			}catch (Exception e) {
-				view.refresh("Erreur lors du check !");
+				notifyView("Erreur lors du check !");
 			}
 			break;
 		case "uncheck":
@@ -87,9 +87,9 @@ public class Routeur {
 					}
 				}
 				if(!bonuc)
-					view.refresh("Erreur la tache est inexistante !");
+					notifyView("Erreur la tache est inexistante !");
 			} catch (Exception e) {
-				view.refresh("Erreur lors du uncheck !");
+				notifyView("Erreur lors du uncheck !");
 			}
 			break;
 		case "help":
@@ -99,5 +99,25 @@ public class Routeur {
 			view.error(command);
 			break;
 		}
+	}
+	
+	public void help() {
+		String msg = "";
+        msg += "Commands:\n";
+        msg += "  show\n";
+        msg += "  add project <project name>");
+        out.println("  add task <project name> <task description>");
+        out.println("  check <task ID>");
+        out.println("  uncheck <task ID>");
+        out.println();
+    }
+
+    public void error(String command) {
+        out.printf("I don't know what the command \"%s\" is.", command);
+        out.println();
+    }
+	
+	private void notifyView(String msg) {
+		view.actualiser(msg);
 	}
 }
