@@ -9,8 +9,7 @@ import Model.Task;
 import View.TaskOtron3000;
 
 public class Routeur {
-	private Controler ctrl;
-	private List<Project> lProject = new ArrayList<Project>();
+	private List<ControlerProject> lProject = new ArrayList<ControlerProject>();
 	private TaskOtron3000 view;
 	private int lastID = 0;
 
@@ -24,7 +23,7 @@ public class Routeur {
 		switch (command) {
 		case "show":
 			String msg = "";
-			for (Project p : this.lProject) {
+			for (ControlerProject p : this.lProject) {
 				msg += "Project " + p.getNom() + " :\n";
 				for (Task task : p.getTasks()) {
 					if(task.isDone())
@@ -39,13 +38,13 @@ public class Routeur {
 			try {
 				if (commandRest[1].equals("project")) {
 					try {
-						lProject.add(new Project(commandRest[2]));
+						lProject.add(new ControlerProject(new Project(commandRest[2])));
 					}catch (Exception e) {
 						notifyView("add <project> <Project Name>");
 					}
 				} else if (commandRest[1].equals("task")) {
 					try {
-						for (Project p : this.lProject) {
+						for (ControlerProject p : this.lProject) {
 							if(p.getNom().equals(commandRest[2])) {
 								String[] date = commandRest[4].split("/");
 								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0]))));
@@ -63,7 +62,7 @@ public class Routeur {
 		case "check":
 			try {
 				boolean bonc = false;
-				for(Project p : this.lProject) {
+				for(ControlerProject p : this.lProject) {
 					if(p.getTask(Integer.parseInt(commandRest[1])) != null) {
 						p.getTask(Integer.parseInt(commandRest[1])).setDone(true);
 						bonc = true;
@@ -79,7 +78,7 @@ public class Routeur {
 		case "uncheck":
 			try {
 				boolean bonuc = false;
-				for(Project p : this.lProject) {
+				for(ControlerProject p : this.lProject) {
 					if(p.getTask(Integer.parseInt(commandRest[1])) != null) {
 						p.getTask(Integer.parseInt(commandRest[1])).setDone(false);
 						bonuc = true;
@@ -94,6 +93,11 @@ public class Routeur {
 			break;
 		case "help":
 			view.help();
+			break;
+		case "today":
+			for (ControlerProject p : lProject) {
+				notifyView(p.viewTodayDeadLine());
+			}
 			break;
 		default:
 			view.error(command);

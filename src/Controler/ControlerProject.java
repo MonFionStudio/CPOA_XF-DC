@@ -59,4 +59,8 @@ public class ControlerProject extends Controler {
 	public int size() {
 		return this.project.size();
 	}
+	
+	public Project getProject() {
+		return this.project;
+	}
 }
