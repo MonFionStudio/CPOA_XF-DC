@@ -119,8 +119,13 @@ public class Routeur {
 			}
 			break;
 		case "byday":
-			for (ControlerProject p : lProject) {
-				notifyView(p.viewTasksDeadLine(new Date()));
+			try {
+				for (ControlerProject p : lProject) {
+					String[] date = commandRest[2].split("/");
+					notifyView(p.viewTasksDeadLine(new Date(Integer.parseInt(date[2])-1900, Integer.parseInt(date[1])-1, Integer.parseInt(date[0]))));
+				}
+			}catch (Exception e) {
+				notifyView("byday <dd/mm/YYYY>");
 			}
 			break;
 		default:
@@ -128,37 +133,39 @@ public class Routeur {
 			break;
 		}
 	}
-	
+
 	/**
 	 * Ce qui est retourné à la vue quand on entre la commande help
 	 * @return aide
 	 */
 	private String help() {
 		String msg = "";
-        msg += "Commands:\n";
-        msg += "  show\n";
-        msg += "  add project <project name>\n";
-        msg += "  add task <project name> <task description>\n";
-        msg += "  check <task ID>\n";
-        msg += "  uncheck <task ID>";
-        return msg;
-    }
+		msg += "Commands:\n";
+		msg += "  show\n";
+		msg += "  add project <project name>\n";
+		msg += "  add task <project name> <task description> <dd/mm/YYYY>\n";
+		msg += "  check <task ID>\n";
+		msg += "  uncheck <task ID>\n";
+		msg += "  today\n";
+		msg += "  byday <dd/mm/YYYY>";
+		return msg;
+	}
 
 	/**
 	 * Ce qui est retourné à la vue quand on entre une mauvaise commande.
 	 * @param command
 	 * @return erreur
 	 */
-    private String error(String command) {
-    	String msg = "";
-    	msg += "I don't know what the command " + command + " is.";
-    	return msg;
-    }
-	
-    /**
-     * La commande qui indique à la vue qu'elle doit s'actualiser.
-     * @param msg
-     */
+	private String error(String command) {
+		String msg = "";
+		msg += "I don't know what the command " + command + " is.";
+		return msg;
+	}
+
+	/**
+	 * La commande qui indique à la vue qu'elle doit s'actualiser.
+	 * @param msg
+	 */
 	public void notifyView(String msg) {
 		view.actualiser(msg);
 	}
