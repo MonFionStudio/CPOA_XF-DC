@@ -40,10 +40,11 @@ public class Routeur {
 			for (ControlerProject p : this.lProject) {
 				msg += "Project " + p.getNom() + " :\n";
 				for (Task task : p.getTasks()) {
-					if(task.isDone())
-						msg += "    [x] " + task + "\n";
+					ControlerTask CT = new ControlerTask(task);
+					if(CT.isDone())
+						msg += "    [x] " + CT.getId() + " " + CT.getDescription() + " " + CT.getDeadLine() + "\n";
 					else
-						msg += "    [ ] " + task + "\n";
+						msg += "    [ ] " + CT.getId() + " " + CT.getDescription() + " " + CT.getDeadLine() + "\n";
 				}
 				notifyView(msg);
 			}
@@ -61,13 +62,15 @@ public class Routeur {
 						for (ControlerProject p : this.lProject) {
 							if(p.getNom().equals(commandRest[2])) {
 								String[] date = commandRest[4].split("/");
-								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[2]), Integer.parseInt(date[1])-1, Integer.parseInt(date[0]))));
+								p.addTask(new Task(lastID, commandRest[3], false, new Date(Integer.parseInt(date[2])-1900, Integer.parseInt(date[1])-1, Integer.parseInt(date[0]))));
 								lastID++;
 							}
 						}
 					} catch (Exception e) {
 						notifyView("add <task> <Project Name> <Task Description> <dd/mm/YYYY>");
 					}
+				}else {
+					notifyView("add <project|task> <Project Name> <Task Description>");
 				}
 			} catch (Exception e) {
 				notifyView("add <project|task> <Project Name> <Task Description>");
@@ -78,7 +81,8 @@ public class Routeur {
 				boolean bonc = false;
 				for(ControlerProject p : this.lProject) {
 					if(p.getTask(Integer.parseInt(commandRest[1])) != null) {
-						p.getTask(Integer.parseInt(commandRest[1])).setDone(true);
+						ControlerTask CT = new ControlerTask(p.getTask(Integer.parseInt(commandRest[1])));
+						CT.setDone(true);
 						bonc = true;
 						break;
 					}
@@ -94,7 +98,8 @@ public class Routeur {
 				boolean bonuc = false;
 				for(ControlerProject p : this.lProject) {
 					if(p.getTask(Integer.parseInt(commandRest[1])) != null) {
-						p.getTask(Integer.parseInt(commandRest[1])).setDone(false);
+						ControlerTask CT = new ControlerTask(p.getTask(Integer.parseInt(commandRest[1])));
+						CT.setDone(false);
 						bonuc = true;
 						break;
 					}
