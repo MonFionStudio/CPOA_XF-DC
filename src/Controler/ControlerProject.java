@@ -1,5 +1,7 @@
 package Controler;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -30,8 +32,11 @@ public class ControlerProject extends Controler {
 	 */
 	public String viewTodayDeadLine() {
 		String msg = "";
+		DateFormat df = new SimpleDateFormat("dd/MM/yy");
+		String date = df.format(new Date());
 		for (Task teuch : this.getTasks()) {
-			if(teuch.getDeadLine().equals(new Date(new Date().getTime()))) {
+			String TaskDate = df.format(teuch.getDeadLine());
+			if(TaskDate.equals(date)) {
 				msg += this.project.getNom() + "\n" + teuch.toString() + "\n";
 			}
 		}

@@ -1,5 +1,7 @@
 package Controler;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -121,7 +123,7 @@ public class Routeur {
 		case "byday":
 			try {
 				for (ControlerProject p : lProject) {
-					String[] date = commandRest[2].split("/");
+					String[] date = commandRest[1].split("/");
 					notifyView(p.viewTasksDeadLine(new Date(Integer.parseInt(date[2])-1900, Integer.parseInt(date[1])-1, Integer.parseInt(date[0]))));
 				}
 			}catch (Exception e) {
