@@ -8,15 +8,29 @@ import Model.Project;
 import Model.Task;
 import View.TaskOtron3000;
 
+/**
+ * La classe routeur qui fait le lien entre les objets est les vues.
+ * @author Dimitri Calmels & Xavier Fernandez
+ *
+ */
 public class Routeur {
 	private List<ControlerProject> lProject = new ArrayList<ControlerProject>();
 	private TaskOtron3000 view;
 	private int lastID = 0;
 
+	/**
+	 * Le constructeur du routeur qui prend la vue en paramètre.
+	 * Permet de créer un routeur avec la vue.
+	 * @param pfView
+	 */
 	public Routeur(TaskOtron3000 pfView) {
 		this.view = pfView;
 	}
 
+	/**
+	 * La méthode appelé par la vue afin de pouvoir exécuter toutes les commandes.
+	 * @param commandLine
+	 */
 	public void execute(String commandLine) {
 		String[] commandRest = commandLine.split(" ");
 		String command = commandRest[0];
@@ -110,6 +124,10 @@ public class Routeur {
 		}
 	}
 	
+	/**
+	 * Ce qui est retourné à la vue quand on entre la commande help
+	 * @return aide
+	 */
 	private String help() {
 		String msg = "";
         msg += "Commands:\n";
@@ -121,12 +139,21 @@ public class Routeur {
         return msg;
     }
 
+	/**
+	 * Ce qui est retourné à la vue quand on entre une mauvaise commande.
+	 * @param command
+	 * @return erreur
+	 */
     private String error(String command) {
     	String msg = "";
     	msg += "I don't know what the command " + command + " is.";
     	return msg;
     }
 	
+    /**
+     * La commande qui indique à la vue qu'elle doit s'actualiser.
+     * @param msg
+     */
 	public void notifyView(String msg) {
 		view.actualiser(msg);
 	}
