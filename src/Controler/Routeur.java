@@ -110,7 +110,7 @@ public class Routeur {
 		}
 	}
 	
-	public String help() {
+	private String help() {
 		String msg = "";
         msg += "Commands:\n";
         msg += "  show\n";
@@ -121,13 +121,13 @@ public class Routeur {
         return msg;
     }
 
-    public String error(String command) {
+    private String error(String command) {
     	String msg = "";
     	msg += "I don't know what the command " + command + " is.";
     	return msg;
     }
 	
-	private void notifyView(String msg) {
+	public void notifyView(String msg) {
 		view.actualiser(msg);
 	}
 }
