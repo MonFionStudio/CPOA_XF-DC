@@ -50,6 +50,7 @@ public class Routeur {
 				}
 				notifyView(msg);
 			}
+			System.out.println("coucou");
 			break;
 		case "add":
 			try {
