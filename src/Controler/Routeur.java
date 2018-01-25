@@ -44,9 +44,9 @@ public class Routeur {
 				for (Task task : p.getTasks()) {
 					ControlerTask CT = new ControlerTask(task);
 					if(CT.isDone())
-						msg += "    [x] " + CT.getId() + " " + CT.getDescription() + " " + CT.getDeadLine() + "\n";
+						msg += "    [x] " + CT + "\n";
 					else
-						msg += "    [ ] " + CT.getId() + " " + CT.getDescription() + " " + CT.getDeadLine() + "\n";
+						msg += "    [ ] " + CT + "\n";
 				}
 			}
 			notifyView(msg);

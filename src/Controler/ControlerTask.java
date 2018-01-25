@@ -78,6 +78,14 @@ public class ControlerTask extends Controler {
     }
     
     /**
+     * Permet de récupérer la tâche de façon lisible
+     * @return tâche
+     */
+    public String toString() {
+    	return this.task.toString();
+    }
+    
+    /**
      * Permet de définir la date de fin de la tâche.
      * @param pfDeadline
      */

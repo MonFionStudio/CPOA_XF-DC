@@ -1,5 +1,7 @@
 package Model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -81,6 +83,7 @@ public final class Task {
      * @return tâche
      */
     public String toString() {
-    	return this.getId() + " : " + this.getDescription() + " " + this.getDeadLine().getDate() + "/" + (this.getDeadLine().getMonth()+1) + "/" + this.getDeadLine().getYear();
+    	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    	return this.getId() + " : " + this.getDescription() + " " + df.format(this.deadline);
     }
 }
