@@ -95,6 +95,22 @@ public class Routeur {
 				notifyView("Erreur lors du check !");
 			}
 			break;
+		case "remove":
+			try {
+				boolean bonc = false;
+				for(ControlerProject p : this.lProject) {
+					if(p.getTask(Integer.parseInt(commandRest[1])) != null) {
+						p.rmTask(Integer.parseInt(commandRest[1]));
+						bonc = true;
+						break;
+					}
+				}
+				if(!bonc)
+					notifyView("Erreur la tache est inexistante !");
+			}catch (Exception e) {
+				notifyView("remove <ID>");
+			}
+			break;
 		case "uncheck":
 			try {
 				boolean bonuc = false;

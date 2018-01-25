@@ -67,6 +67,7 @@ public class Project {
 		for (Task teuch : this.tasks) {
 			if(teuch.getId() == pfId) {
 				this.tasks.remove(teuch);
+				break;
 			}
 		}
 	}
