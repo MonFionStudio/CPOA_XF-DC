@@ -1,0 +1,87 @@
+@startuml
+skinparam packageStyle rectangle
+
+' definitions
+' -----------
+
+rectangle Model{
+' package "Model"
+class Task
+class Project
+' end package
+}
+
+rectangle View{
+' package "View"
+class TaskOtron3000
+' end package
+}
+
+rectangle Controler {
+' package "Controler"
+abstract Controler
+class ControlerProject
+class ControlerTask
+class Routeur
+' end package
+}
+
+' content
+' -------
+
+' ControlerProject:
+Controler <|-- ControlerProject
+ControlerProject --> "1" Project
+ControlerProject : String viewTodayDeadLine()
+ControlerProject : String viewTasksDeadLine(Date)
+ControlerProject : String getNom()
+ControlerProject : List getTasks()
+ControlerProject : Task getTask(long)
+ControlerProject : void addTask(Task)
+ControlerProject : void rmTask(long)
+ControlerProject : int size()
+ControlerProject : Project getProject()
+
+' Routeur:
+Routeur -left-> "1" TaskOtron3000
+Routeur : void execute(String)
+Routeur : void notifyView(String)
+
+' Task:
+Task : long getId()
+Task : String getDescription()
+Task : boolean isDone()
+Task : void setDone(boolean)
+Task : Date getDeadLine()
+Task : void setDeadLine(Date)
+Task : String toString()
+
+' Controler:
+Controler -up-> "1..*" Routeur
+
+' ControlerTask:
+Controler <|-- ControlerTask
+ControlerTask --> "1" Task
+ControlerTask : boolean isDeadLine(Date)
+ControlerTask : long getId()
+ControlerTask : String getDescription()
+ControlerTask : boolean isDone()
+ControlerTask : void setDone(boolean)
+ControlerTask : Date getDeadLine()
+ControlerTask : void setDeadLine(Date)
+
+' Project:
+Project : String getNom()
+Project : List getTasks()
+Project : Task getTask(long)
+Project : void addTask(Task)
+Project : void rmTask(long)
+Project : int size()
+Project : String toString()
+
+' TaskOtron3000:
+TaskOtron3000 --> "1" Routeur
+TaskOtron3000 : void main(String)
+TaskOtron3000 : void run()
+TaskOtron3000 : void actualiser(String)
+@enduml
