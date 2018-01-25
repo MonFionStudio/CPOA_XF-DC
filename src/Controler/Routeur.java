@@ -48,9 +48,8 @@ public class Routeur {
 					else
 						msg += "    [ ] " + CT.getId() + " " + CT.getDescription() + " " + CT.getDeadLine() + "\n";
 				}
-				notifyView(msg);
 			}
-			System.out.println("coucou");
+			notifyView(msg);
 			break;
 		case "add":
 			try {
